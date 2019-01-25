@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7921f119ce2a45e408331c1929506927, type: 3}
+  m_Name: Building Brush
+  m_EditorClassIdentifier: 
+  m_Wall: {fileID: 11400000, guid: bc6bd07619267d647b70e4080ccd82ce, type: 2}
+  m_Floor: {fileID: 11400000, guid: 4e0d6556e1dc037448c898e0e916da58, type: 2}
