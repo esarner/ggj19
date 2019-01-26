@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3817689397397502788}
   - component: {fileID: 2186650267302544027}
   m_Layer: 0
-  m_Name: Kitchen bench
+  m_Name: Kitchen bench with drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
