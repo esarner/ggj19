@@ -5577,7 +5577,7 @@ MonoBehaviour:
   _player: {fileID: 1137649977}
   _dayLength: 30
   _dropZone: {fileID: 376760644}
-  _song: {fileID: 8300000, guid: 9f0c7f8832aff354ea574a49929fc3ad, type: 3}
+  _song: {fileID: 8300000, guid: 9315f674151c7a94dbc99c72b15bf782, type: 3}
 --- !u!4 &765468552
 Transform:
   m_ObjectHideFlags: 0
