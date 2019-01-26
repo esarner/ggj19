@@ -14,6 +14,8 @@ namespace Levels
         [SerializeField] private Transform _player;
         [SerializeField] private int _dayLength;
         [SerializeField] private DropZone _dropZone;
+        [SerializeField] private AudioClip _song;
+        private AudioSource _audioSource;
 
         private float _dailyTimer;
         private float _endOfDayTime;
@@ -21,10 +23,15 @@ namespace Levels
 
         private bool _isGameRunning = false;
 
-
+        private void RestartSong()
+        {
+            _audioSource.clip = _song;
+            _audioSource.Play();
+        }
 
         private void Awake()
         {
+            _audioSource = GetComponent<AudioSource>();
             _dailyTimer = 0;
             _endOfDayTime = _dailyTimer + _dayLength;
             _currentObjectiveIndex = -1;
@@ -76,8 +83,9 @@ namespace Levels
             _gameHUD.SetMissionBriefing(dailyObjective.name, dailyObjective.ObjectiveDescription);
             _gameHUD.DisplayBriefing(true);
             _gameHUD.DisplayTimePiece(false);
+            RestartSong();
 
-            yield return new WaitForSecondsRealtime(3f);
+            yield return new WaitForSecondsRealtime(4f);
 
             ResetPlayerStartPosition();
             ResetDailyTimer();
