@@ -9,6 +9,7 @@ public class TimePiece : MonoBehaviour
     public Image HourHand;
     public Image MinuteHand;
     public Image LimitIndicator;
+    public Canvas Canvas;
 
     private void SetHours(int hours, float minutes)
     {

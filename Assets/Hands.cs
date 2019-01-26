@@ -8,6 +8,8 @@ public class Hands : MonoBehaviour, IHands
     [SerializeField] private Vector2 _leftHandPosition;
     [SerializeField] private Vector2 _rightHandPosition;
     [SerializeField] private Vector2 _twoHandPosition;
+    [SerializeField] private AudioClip _pickupAudioClip;
+    [SerializeField] private AudioClip _dropSound;
 
     [SerializeField] private FocusObject _focus;
     private Animator _animator;
@@ -17,6 +19,7 @@ public class Hands : MonoBehaviour, IHands
     private static readonly int OccupiedHands = Animator.StringToHash("occupiedHands");
     private bool _leftHandActive;
     private bool _rightHandActive;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -26,6 +29,20 @@ public class Hands : MonoBehaviour, IHands
     // Start is called before the first frame update
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
+    void PlayPickUpSound()
+    {
+        _audioSource.clip = _pickupAudioClip;
+        _audioSource.Play();
+    }
+
+
+    void PlayDropSound()
+    {
+        _audioSource.clip = _dropSound;
+        _audioSource.Play();
     }
 
     // Update is called once per frame
@@ -50,7 +67,7 @@ public class Hands : MonoBehaviour, IHands
                         _leftHand.transform.SetParent(null);
                         _rightHand = null;
                         _leftHand = null;
-
+                        PlayDropSound();
                     }
                 }
             }
@@ -62,6 +79,7 @@ public class Hands : MonoBehaviour, IHands
                     _leftHand.transform.SetParent(null);
                     _rightHand = null;
                     _leftHand = null;
+                    PlayDropSound();
                 }
             }
         }
@@ -78,6 +96,7 @@ public class Hands : MonoBehaviour, IHands
                     _leftHand.OnDrop();
                     _leftHand.transform.SetParent(null);
                     _leftHand = null;
+                    PlayDropSound();
                 }
             }
             else if (handInteractionState == HandInteraction.NoHands)
@@ -85,6 +104,7 @@ public class Hands : MonoBehaviour, IHands
                 _leftHand.OnDrop();
                 _leftHand.transform.SetParent(null);
                 _leftHand = null;
+                PlayDropSound();
             }
         }
         else if (Input.GetButtonDown("InteractRight"))
@@ -100,6 +120,7 @@ public class Hands : MonoBehaviour, IHands
                     _rightHand.OnDrop();
                     _rightHand.transform.SetParent(null);
                     _rightHand = null;
+                    PlayDropSound();
                 }
             }
             else if (handInteractionState == HandInteraction.NoHands)
@@ -107,6 +128,7 @@ public class Hands : MonoBehaviour, IHands
                 _rightHand.OnDrop();
                 _rightHand.transform.SetParent(null);
                 _rightHand = null;
+                PlayDropSound();
             }
         }
 
@@ -151,6 +173,8 @@ public class Hands : MonoBehaviour, IHands
 
         pickupTransform.SetParent(transform);
         pickupTransform.localPosition = _leftHandPosition;
+
+        PlayPickUpSound();
     }
 
     public void GrabWithRightHand(Pickup pickup)
@@ -161,6 +185,8 @@ public class Hands : MonoBehaviour, IHands
 
         pickupTransform.SetParent(transform);
         pickupTransform.localPosition = _rightHandPosition;
+
+        PlayPickUpSound();
     }
 
     public void GrabWithBothHands(Pickup pickup)
@@ -172,5 +198,7 @@ public class Hands : MonoBehaviour, IHands
 
         pickupTransform.SetParent(transform);
         pickupTransform.localPosition = _twoHandPosition;
+
+        PlayPickUpSound();
     }
 }

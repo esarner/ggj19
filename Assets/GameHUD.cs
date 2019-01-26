@@ -51,4 +51,9 @@ public class GameHUD : MonoBehaviour
     {
         MissionBriefing.Canvas.enabled = display;
     }
+
+    public void DisplayTimePiece(bool display)
+    {
+        TimePiece.Canvas.enabled = display;
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,7 +19,9 @@ namespace Levels
         private float _endOfDayTime;
         private int _currentObjectiveIndex;
 
-        
+        private bool _isGameRunning = false;
+
+
 
         private void Awake()
         {
@@ -36,12 +39,18 @@ namespace Levels
         {
             _dailyTimer += Time.deltaTime;
 
-            _gameHUD.TimePiece.SetTime(_dailyTimer * 12f);
+            UpdateTimePiece();
 
             if (_dailyTimer >= _endOfDayTime)
             {
                 StartCoroutine(EndOfDay());
             }
+        }
+
+        private void UpdateTimePiece()
+        {
+            if (_isGameRunning)
+                _gameHUD.TimePiece.SetTime(_dailyTimer * 12f);
         }
 
         private void LoadNextLevel()
@@ -52,7 +61,7 @@ namespace Levels
 
                 StartCoroutine(LoadNextLevelRoutine());
                 //DisplayDailyObjective
-             
+
             }
             else
             {
@@ -66,6 +75,7 @@ namespace Levels
 
             _gameHUD.SetMissionBriefing(dailyObjective.name, dailyObjective.ObjectiveDescription);
             _gameHUD.DisplayBriefing(true);
+            _gameHUD.DisplayTimePiece(false);
 
             yield return new WaitForSecondsRealtime(3f);
 
@@ -73,6 +83,8 @@ namespace Levels
             ResetDailyTimer();
             _gameHUD.TimePiece.SetLimit(6);
             _gameHUD.DisplayBriefing(false);
+            _gameHUD.DisplayTimePiece(true);
+            _isGameRunning = true;
         }
 
         public void DisplayMissionBriefing()
@@ -92,9 +104,11 @@ namespace Levels
 
         private IEnumerator EndOfDay()
         {
+            _isGameRunning = false;
             var points = CalculatePointsForCurrentDay();
             _gameHUD.SetScoreScreen(points);
             _gameHUD.DisplayScore(true);
+            _gameHUD.TimePiece.SetTime(60 * 6);
 
             yield return new WaitForSecondsRealtime(3f);
 
