@@ -5,31 +5,44 @@ using UnityEngine;
 
 public class FocusObject : MonoBehaviour
 {
-    private readonly List<Transform> _reachableObjects = new List<Transform>();
+    private readonly List<Pickup> _reachableObjects = new List<Pickup>();
+    private Pickup _focusedPickup;
 
     private void Update()
     {
-        var fisk = _reachableObjects.FirstOrDefault();
-        if (fisk)
+        var pickup = _reachableObjects.FirstOrDefault();
+        if (pickup)
         {
-            fisk.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            _focusedPickup = pickup;
+            _focusedPickup.SetFocus();
+
+            if (Input.GetButtonDown("Interact"))
+            {
+                var pickupTransform = _focusedPickup.transform;
+                pickupTransform.SetParent(transform);
+                pickupTransform.localPosition = new Vector3(0, 0.25f, 0);
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("pickup"))
+        var pickup = other.GetComponent<Pickup>();
+
+        if (pickup != null)
         {
-            _reachableObjects.Add(other.transform);
+            _reachableObjects.Add(pickup);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (_reachableObjects.Contains(other.transform))
+        var pickup = other.GetComponent<Pickup>();
+
+        if (pickup != null && _reachableObjects.Contains(pickup))
         {
-            _reachableObjects.Remove(other.transform);
-            other.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            pickup.SetFocus(false);
+            _reachableObjects.Remove(pickup);
         }
     }
 }
