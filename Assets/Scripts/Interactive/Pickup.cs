@@ -16,7 +16,7 @@ public class Pickup : Interactable, IPickup
 
     void Awake()
     {
-        _sprite = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
     }
 

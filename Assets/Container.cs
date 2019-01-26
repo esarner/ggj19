@@ -1,44 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Interactive;
 using UnityEngine;
 
-public class Fridge : Interactable
+public class Container : Interactable
 {
     private bool _isOpen;
-    private Animator _animator;
-    private readonly int open = Animator.StringToHash("open");
+    private readonly int isOpen = Animator.StringToHash("isOpen");
 
     [SerializeField] private List<Pickup> _content;
 
     [SerializeField]
-    private SpriteRenderer _doorSprite;
+    private SpriteRenderer _doorSpriteRenderer;
     [SerializeField]
-    private SpriteRenderer _fridgeSprite;
-
+    private SpriteRenderer _containerSpriteRenderer;
+    [SerializeField]
+    private Animator _animator;
 
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
-        _sprite = GetComponent<SpriteRenderer>();
-    }
-
-    private void Start()
-    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public override void SetFocus(bool focused = true)
     {
         if (focused)
         {
-            _fridgeSprite.color = Color.green;
-            _doorSprite.color = Color.green;
+            _containerSpriteRenderer.color = Color.green;
+            _doorSpriteRenderer.color = Color.green;
         }
         else
         {
-            _fridgeSprite.color = Color.white;
-            _doorSprite.color = Color.white;
+            _containerSpriteRenderer.color = Color.white;
+            _doorSpriteRenderer.color = Color.white;
         }
     }
 
@@ -51,17 +45,15 @@ public class Fridge : Interactable
             _content.RemoveAt(0);
 
             var contentInstance = Instantiate(pickup, transform);
-            var contentInstanceTransform = contentInstance.transform;
 
             PickUp(getHandInteractionState, hands, contentInstance);
         }
         else
         {
             _isOpen = !_isOpen;
-
         }
 
-        _animator.SetBool(open, _isOpen);
+        _animator.SetBool(isOpen, _isOpen);
 
         return true;
     }
