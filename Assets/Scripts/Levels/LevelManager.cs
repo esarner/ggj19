@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Levels
 {
     public class LevelManager : MonoBehaviour
     {
+        [SerializeField] private GameHUD _gameHUD;
         [SerializeField] private List<DailyObjective> _dailyObjectives;
         [SerializeField] private Transform _playerStartPosition;
         [SerializeField] private Transform _player;
@@ -34,7 +36,7 @@ namespace Levels
 
             if (_dailyTimer >= _endOfDayTime)
             {
-                EndOfDay();
+                StartCoroutine(EndOfDay());
             }
         }
 
@@ -43,14 +45,34 @@ namespace Levels
             if (_currentObjectiveIndex < _dailyObjectives.Count - 1)
             {
                 _currentObjectiveIndex += 1;
+
+                StartCoroutine(LoadNextLevelRoutine());
                 //DisplayDailyObjective
-                ResetPlayerStartPosition();
-                ResetDailyTimer();
+             
             }
             else
             {
                 // Finished all levels!
             }
+        }
+
+        public IEnumerator LoadNextLevelRoutine()
+        {
+            var dailyObjective = _dailyObjectives.ElementAt(_currentObjectiveIndex);
+
+            _gameHUD.SetMissionBriefing(dailyObjective.name, dailyObjective.ObjectiveDescription);
+            _gameHUD.DisplayBriefing(true);
+
+            yield return new WaitForSecondsRealtime(3f);
+
+            ResetPlayerStartPosition();
+            ResetDailyTimer();
+            _gameHUD.DisplayBriefing(false);
+        }
+
+        public void DisplayMissionBriefing()
+        {
+
         }
 
         private void ResetPlayerStartPosition()
@@ -63,9 +85,15 @@ namespace Levels
             _dailyTimer = 0;
         }
 
-        private void EndOfDay()
+        private IEnumerator EndOfDay()
         {
             var points = CalculatePointsForCurrentDay();
+            _gameHUD.SetScoreScreen(points);
+            _gameHUD.DisplayScore(true);
+
+            yield return new WaitForSecondsRealtime(3f);
+
+            _gameHUD.DisplayScore(false);
             // Display end level screen
             LoadNextLevel();
         }
@@ -75,7 +103,7 @@ namespace Levels
             var dailyObjective = _dailyObjectives.ElementAt(_currentObjectiveIndex);
 
             var totalpoints = 0;
-            
+
             var objectsInDropZone = _dropZone.GetObjectsInDropZone();
             foreach (var pickup in objectsInDropZone)
             {

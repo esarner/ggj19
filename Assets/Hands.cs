@@ -39,10 +39,24 @@ public class Hands : MonoBehaviour, IHands
             var handInteractionState = GetHandInteractionState();
 
             var interactable = _focus.GetFocusedInteractable();
-            
+
             if (interactable)
             {
                 if (interactable.Interact(handInteractionState, this) == false)
+                {
+                    if (_leftHand)
+                    {
+                        _leftHand.OnDrop();
+                        _leftHand.transform.SetParent(null);
+                        _rightHand = null;
+                        _leftHand = null;
+
+                    }
+                }
+            }
+            else if (handInteractionState == HandInteraction.NoHands)
+            {
+                if (_leftHand)
                 {
                     _leftHand.OnDrop();
                     _leftHand.transform.SetParent(null);
@@ -50,20 +64,13 @@ public class Hands : MonoBehaviour, IHands
                     _leftHand = null;
                 }
             }
-            else if (handInteractionState == HandInteraction.NoHands)
-            {
-                _leftHand.OnDrop();
-                _leftHand.transform.SetParent(null);
-                _rightHand = null;
-                _leftHand = null;
-            }
         }
         else if (Input.GetButtonDown("InteractLeft"))
         {
             var handInteractionState = GetHandInteractionState();
 
             var interactable = _focus.GetFocusedInteractable();
-            
+
             if (interactable)
             {
                 if (interactable.Interact(handInteractionState, this) == false)
@@ -85,7 +92,7 @@ public class Hands : MonoBehaviour, IHands
             var handInteractionState = GetHandInteractionState();
 
             var interactable = _focus.GetFocusedInteractable();
-            
+
             if (interactable)
             {
                 if (interactable.Interact(handInteractionState, this) == false)
@@ -102,7 +109,7 @@ public class Hands : MonoBehaviour, IHands
                 _rightHand = null;
             }
         }
-        
+
         Animate();
     }
 
@@ -132,7 +139,7 @@ public class Hands : MonoBehaviour, IHands
         {
             animationNumber += 2;
         }
-        
+
         _animator.SetInteger(OccupiedHands, animationNumber);
     }
 
