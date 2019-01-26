@@ -16,13 +16,13 @@ public class FocusObject : MonoBehaviour
             _focusedPickup = pickup;
             _focusedPickup.SetFocus();
 
-            if (Input.GetButtonDown("Interact"))
-            {
-                var pickupTransform = _focusedPickup.transform;
-                pickupTransform.SetParent(transform);
-                pickupTransform.localPosition = new Vector3(0, 0.25f, 0);
-            }
+          
         }
+    }
+
+    public Pickup GetFocusedPickup()
+    {
+        return _focusedPickup;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
