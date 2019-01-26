@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,4 +13,4 @@ MonoBehaviour:
   m_Name: Building Brush
   m_EditorClassIdentifier: 
   m_Wall: {fileID: 11400000, guid: bc6bd07619267d647b70e4080ccd82ce, type: 2}
-  m_Floor: {fileID: 11400000, guid: 4e0d6556e1dc037448c898e0e916da58, type: 2}
+  m_Floor: {fileID: 11400000, guid: ede8c51e4cd008f4e839d9a3b2fafbf5, type: 2}
