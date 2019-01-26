@@ -25,6 +25,7 @@ public class GameHUD : MonoBehaviour
 {
     public MissionBriefing MissionBriefing;
     public ScoreScreen ScoreScreen;
+    public TimePiece TimePiece;
 
     public void Start()
     {

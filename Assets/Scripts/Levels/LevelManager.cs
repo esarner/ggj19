@@ -18,6 +18,8 @@ namespace Levels
         private float _endOfDayTime;
         private int _currentObjectiveIndex;
 
+        
+
         private void Awake()
         {
             _dailyTimer = 0;
@@ -33,6 +35,8 @@ namespace Levels
         private void Update()
         {
             _dailyTimer += Time.deltaTime;
+
+            _gameHUD.TimePiece.SetTime(_dailyTimer * 12f);
 
             if (_dailyTimer >= _endOfDayTime)
             {
@@ -67,6 +71,7 @@ namespace Levels
 
             ResetPlayerStartPosition();
             ResetDailyTimer();
+            _gameHUD.TimePiece.SetLimit(6);
             _gameHUD.DisplayBriefing(false);
         }
 
