@@ -40,6 +40,7 @@ public class Hands : MonoBehaviour
             if (_leftHand && _rightHand)
             {
                 _leftHand.transform.SetParent(null);
+                _leftHand.EnableCollision();
                 _rightHand = null;
                 _leftHand = null;
             }
@@ -47,6 +48,7 @@ public class Hands : MonoBehaviour
             {
                 _leftHand = pickup;
                 _rightHand = pickup;
+                pickup.EnableCollision(false);
                 var pickupTransform = pickup.transform;
 
                 pickupTransform.SetParent(transform);
@@ -60,11 +62,13 @@ public class Hands : MonoBehaviour
             if (_leftHand)
             {
                 _leftHand.transform.SetParent(null);
+                _leftHand.EnableCollision();
                 _leftHand = null;
             }
             else if (pickup && pickup.Hands <= 1)
             {
                 _leftHand = pickup;
+                pickup.EnableCollision(false);
                 var pickupTransform = pickup.transform;
 
                 pickupTransform.SetParent(transform);
@@ -79,13 +83,13 @@ public class Hands : MonoBehaviour
             if (_rightHand)
             {
                 _rightHand.transform.SetParent(null);
+                _rightHand.EnableCollision();
                 _rightHand = null;
-                return;
             }
-
-            if (pickup && pickup.Hands <= 1)
+            else if (pickup && pickup.Hands <= 1)
             {
                 _rightHand = pickup;
+                pickup.EnableCollision(false);
                 var pickupTransform = pickup.transform;
 
                 pickupTransform.SetParent(transform);
