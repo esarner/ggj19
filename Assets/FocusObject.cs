@@ -15,8 +15,10 @@ public class FocusObject : MonoBehaviour
         {
             _focusedPickup = pickup;
             _focusedPickup.SetFocus();
-
-          
+        }
+        else
+        {
+            _focusedPickup = null;
         }
     }
 

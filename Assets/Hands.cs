@@ -13,6 +13,9 @@ public class Hands : MonoBehaviour
 
     private Pickup _leftHand;
     private Pickup _rightHand;
+    private static readonly int OccupiedHands = Animator.StringToHash("occupiedHands");
+    private bool _leftHandActive;
+    private bool _rightHandActive;
 
     private void Awake()
     {
@@ -27,10 +30,10 @@ public class Hands : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var leftHand = Input.GetButton("InteractLeft");
-        var rightHand = Input.GetButton("InteractRight");
+        _leftHandActive = Input.GetButton("InteractLeft");
+        _rightHandActive = Input.GetButton("InteractRight");
 
-        if (leftHand && Input.GetButtonDown("InteractRight") || rightHand && Input.GetButtonDown("InteractLeft"))
+        if (_leftHandActive && Input.GetButtonDown("InteractRight") || _rightHandActive && Input.GetButtonDown("InteractLeft"))
         {
             var pickup = _focus.GetFocusedPickup();
 
@@ -86,10 +89,26 @@ public class Hands : MonoBehaviour
                 var pickupTransform = pickup.transform;
 
                 pickupTransform.SetParent(transform);
-                pickupTransform.localPosition = _rightHandPosition;
+                pickupTransform.localPosition = _rightHandPosition;                
             }
         }
         
+        Animate();
+    }
+
+    private void Animate()
+    {
+        var animationNumber = 0;
+        if (_leftHand || _leftHandActive)
+        {
+            animationNumber += 1;
+        }
+
+        if (_rightHand || _rightHandActive)
+        {
+            animationNumber += 2;
+        }
         
+        _animator.SetInteger(OccupiedHands, animationNumber);
     }
 }
