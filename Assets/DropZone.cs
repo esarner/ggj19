@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DropZone : MonoBehaviour
 {
-    private readonly List<Pickup> _objectsInDropZone = new List<Pickup>();
+    [SerializeField] private List<Pickup> _objectsInDropZone = new List<Pickup>();
 
     private void OnTriggerEnter2D(Collider2D other)
     {

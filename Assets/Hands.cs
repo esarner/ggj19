@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Interactive;
 using UnityEngine;
 
-public class Hands : MonoBehaviour
+public class Hands : MonoBehaviour, IHands
 {
     [SerializeField] private Vector2 _leftHandPosition;
     [SerializeField] private Vector2 _rightHandPosition;
@@ -35,69 +36,88 @@ public class Hands : MonoBehaviour
 
         if (_leftHandActive && Input.GetButtonDown("InteractRight") || _rightHandActive && Input.GetButtonDown("InteractLeft"))
         {
-            var pickup = _focus.GetFocusedPickup();
+            var handInteractionState = GetHandInteractionState();
 
-            if (_leftHand && _rightHand)
+            var interactable = _focus.GetFocusedInteractable();
+            
+            if (interactable)
             {
+                if (interactable.Interact(handInteractionState, this) == false)
+                {
+                    _leftHand.OnDrop();
+                    _leftHand.transform.SetParent(null);
+                    _rightHand = null;
+                    _leftHand = null;
+                }
+            }
+            else if (handInteractionState == HandInteraction.NoHands)
+            {
+                _leftHand.OnDrop();
                 _leftHand.transform.SetParent(null);
-                _leftHand.EnableCollision();
                 _rightHand = null;
                 _leftHand = null;
-            }
-            else if (pickup && pickup.Hands == 2)
-            {
-                _leftHand = pickup;
-                _rightHand = pickup;
-                pickup.EnableCollision(false);
-                var pickupTransform = pickup.transform;
-
-                pickupTransform.SetParent(transform);
-                pickupTransform.localPosition = _twoHandPosition;
             }
         }
         else if (Input.GetButtonDown("InteractLeft"))
         {
-            var pickup = _focus.GetFocusedPickup();
+            var handInteractionState = GetHandInteractionState();
 
-            if (_leftHand)
+            var interactable = _focus.GetFocusedInteractable();
+            
+            if (interactable)
             {
+                if (interactable.Interact(handInteractionState, this) == false)
+                {
+                    _leftHand.OnDrop();
+                    _leftHand.transform.SetParent(null);
+                    _leftHand = null;
+                }
+            }
+            else if (handInteractionState == HandInteraction.NoHands)
+            {
+                _leftHand.OnDrop();
                 _leftHand.transform.SetParent(null);
-                _leftHand.EnableCollision();
                 _leftHand = null;
             }
-            else if (pickup && pickup.Hands <= 1)
-            {
-                _leftHand = pickup;
-                pickup.EnableCollision(false);
-                var pickupTransform = pickup.transform;
-
-                pickupTransform.SetParent(transform);
-                pickupTransform.localPosition = _leftHandPosition;
-            }
         }
-
         else if (Input.GetButtonDown("InteractRight"))
         {
-            var pickup = _focus.GetFocusedPickup();
+            var handInteractionState = GetHandInteractionState();
 
-            if (_rightHand)
+            var interactable = _focus.GetFocusedInteractable();
+            
+            if (interactable)
             {
-                _rightHand.transform.SetParent(null);
-                _rightHand.EnableCollision();
-                _rightHand = null;
+                if (interactable.Interact(handInteractionState, this) == false)
+                {
+                    _rightHand.OnDrop();
+                    _rightHand.transform.SetParent(null);
+                    _rightHand = null;
+                }
             }
-            else if (pickup && pickup.Hands <= 1)
+            else if (handInteractionState == HandInteraction.NoHands)
             {
-                _rightHand = pickup;
-                pickup.EnableCollision(false);
-                var pickupTransform = pickup.transform;
-
-                pickupTransform.SetParent(transform);
-                pickupTransform.localPosition = _rightHandPosition;                
+                _rightHand.OnDrop();
+                _rightHand.transform.SetParent(null);
+                _rightHand = null;
             }
         }
         
         Animate();
+    }
+
+    private HandInteraction GetHandInteractionState()
+    {
+        if (_rightHandActive && !_leftHandActive && !_rightHand)
+            return HandInteraction.Right;
+
+        if (_leftHandActive && !_rightHandActive && !_leftHand)
+            return HandInteraction.Left;
+
+        if (_leftHandActive && _rightHandActive && !_leftHand && !_rightHand)
+            return HandInteraction.Both;
+
+        return HandInteraction.NoHands;
     }
 
     private void Animate()
@@ -114,5 +134,36 @@ public class Hands : MonoBehaviour
         }
         
         _animator.SetInteger(OccupiedHands, animationNumber);
+    }
+
+    public void GrabWithLeftHand(Pickup pickup)
+    {
+        _leftHand = pickup;
+        pickup.OnPickup();
+        var pickupTransform = pickup.transform;
+
+        pickupTransform.SetParent(transform);
+        pickupTransform.localPosition = _leftHandPosition;
+    }
+
+    public void GrabWithRightHand(Pickup pickup)
+    {
+        _rightHand = pickup;
+        pickup.OnPickup();
+        var pickupTransform = pickup.transform;
+
+        pickupTransform.SetParent(transform);
+        pickupTransform.localPosition = _rightHandPosition;
+    }
+
+    public void GrabWithBothHands(Pickup pickup)
+    {
+        _leftHand = pickup;
+        _rightHand = pickup;
+        pickup.OnPickup();
+        var pickupTransform = pickup.transform;
+
+        pickupTransform.SetParent(transform);
+        pickupTransform.localPosition = _twoHandPosition;
     }
 }

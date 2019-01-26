@@ -5,46 +5,46 @@ using UnityEngine;
 
 public class FocusObject : MonoBehaviour
 {
-    private readonly List<Pickup> _reachableObjects = new List<Pickup>();
-    private Pickup _focusedPickup;
+    private readonly List<Interactable> _reachableObjects = new List<Interactable>();
+    private Interactable _focusedInteractable;
 
     private void Update()
     {
-        var pickup = _reachableObjects.FirstOrDefault();
-        if (pickup)
+        var interactable = _reachableObjects.FirstOrDefault();
+        if (interactable)
         {
-            _focusedPickup = pickup;
-            _focusedPickup.SetFocus();
+            _focusedInteractable = interactable;
+            _focusedInteractable.SetFocus();
         }
         else
         {
-            _focusedPickup = null;
+            _focusedInteractable = null;
         }
     }
 
-    public Pickup GetFocusedPickup()
+    public Interactable GetFocusedInteractable()
     {
-        return _focusedPickup;
+        return _focusedInteractable;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var pickup = other.GetComponent<Pickup>();
+        var interactable = other.GetComponent<Interactable>();
 
-        if (pickup != null)
+        if (interactable != null)
         {
-            _reachableObjects.Add(pickup);
+            _reachableObjects.Add(interactable);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        var pickup = other.GetComponent<Pickup>();
+        var interactable = other.GetComponent<Interactable>();
 
-        if (pickup != null && _reachableObjects.Contains(pickup))
+        if (interactable != null && _reachableObjects.Contains(interactable))
         {
-            pickup.SetFocus(false);
-            _reachableObjects.Remove(pickup);
+            interactable.SetFocus(false);
+            _reachableObjects.Remove(interactable);
         }
     }
 }
