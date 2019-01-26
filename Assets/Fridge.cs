@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Interactive;
 using UnityEngine;
 
 public class Fridge : Interactable
@@ -16,33 +15,32 @@ public class Fridge : Interactable
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
     }
 
-    public override bool Interact(HandInteraction getHandInteractionState, IHands hands)
+
+
+    public override void Interact()
     {
-//        if (_isOpen && _content.Count > 0)
-//        {
-//            var pickup = _content[0];
-//            _content.RemoveAt(0);
-//
-//            var contentInstance = Instantiate(pickup, transform);
-//            var contentInstanceTransform = contentInstance.transform;
-//
-//            contentInstanceTransform.localPosition = new Vector3(0, -0.5f, 0);
-//            contentInstanceTransform.SetParent(null);
-//        }
-//        else
+        if (_isOpen && _content.Count > 0)
+        {
+            var pickup = _content[0];
+            _content.RemoveAt(0);
+
+            var contentInstance = Instantiate(pickup, transform);
+            var contentInstanceTransform = contentInstance.transform;
+
+            contentInstanceTransform.localPosition = new Vector3(0, -0.5f, 0);
+            contentInstanceTransform.SetParent(null);
+        }
+        else
         {
             _isOpen = !_isOpen;
         }
 
         _animator.SetBool(open, _isOpen);
-
-        return true;
     }
 }
