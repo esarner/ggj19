@@ -5,7 +5,7 @@ using UnityEngine;
 public struct PickupClassification
 {
     public PickupType Type;
-    public uint Points;
+    public int Points;
 
 }
 

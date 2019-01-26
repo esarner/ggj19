@@ -25,4 +25,9 @@ public class DropZone : MonoBehaviour
             _objectsInDropZone.Remove(pickup);
         }
     }
+
+    public List<Pickup> GetObjectsInDropZone()
+    {
+        return _objectsInDropZone;
+    }
 }
