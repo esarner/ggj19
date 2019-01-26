@@ -12,7 +12,7 @@ public class Pickup : Interactable, IPickup
     [SerializeField] private int _hands;
     public int Hands => _hands;
 
-    void Start()
+    void Awake()
     {
         _sprite = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();

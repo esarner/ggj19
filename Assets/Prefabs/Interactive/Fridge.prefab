@@ -224,3 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63a333d87fc4da4d8f3d820afd7b262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _content: []
+  _doorSprite: {fileID: 4391572056855267939}
+  _fridgeSprite: {fileID: 4391572058180149516}
