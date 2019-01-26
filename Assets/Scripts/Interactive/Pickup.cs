@@ -11,6 +11,8 @@ public class Pickup : Interactable, IPickup
 
     [SerializeField] private int _hands;
     public int Hands => _hands;
+    public List<PickupClassification> Classifications;
+
 
     void Awake()
     {

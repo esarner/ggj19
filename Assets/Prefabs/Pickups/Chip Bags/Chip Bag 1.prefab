@@ -95,6 +95,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hands: 1
+  Classifications:
+  - Type: 0
+    Points: 10
 --- !u!60 &480814310931685174
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -130,3 +130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hands: 2
+  Classifications:
+  - Type: 3
+    Points: 10
