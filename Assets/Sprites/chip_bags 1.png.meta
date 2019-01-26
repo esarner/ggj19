@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: a20490fdb27f8fe4c9006cea9161a849
+guid: 4f3a49cdf7eeb1e49b3146743533a77b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: chip_bags_0
-    21300002: chip_bags_1
-    21300004: chip_bags_2
-    21300006: chip_bags_3
+    21300000: chip_bags 1_0
+    21300002: chip_bags 1_1
+    21300004: chip_bags 1_2
+    21300006: chip_bags 1_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -88,7 +88,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chip_bags_0
+      name: chip_bags 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -102,13 +102,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92e9c03e416372d4faa82fb65f327724
+      spriteID: 5459ef342ac15f64183c33a0383b48d3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chip_bags_1
+      name: chip_bags 1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -122,13 +122,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0796f474d5bba9147942780df1d09e5c
+      spriteID: 2d7c52f9ab671e341a69429cc52a0b24
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chip_bags_2
+      name: chip_bags 1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -142,13 +142,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1c2cc2f31aae554087ad52a6364b6e7
+      spriteID: cd570f061fbe9d845afc25f3f301e434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: chip_bags_3
+      name: chip_bags 1_3
       rect:
         serializedVersion: 2
         x: 32
@@ -162,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3edbc1335e490da4cb113378e3c0617d
+      spriteID: 76496108c22945a4e989fcce8db617cf
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5a161df55ff744842af2bc84913cafc6
+    spriteID: be2c2d9a30b605f4595ad9667c07b203
     vertices: []
     indices: 
     edges: []
