@@ -33,7 +33,7 @@ namespace Levels
         {
             _audioSource = GetComponent<AudioSource>();
             _dailyTimer = 0;
-            _endOfDayTime = _dailyTimer + _dayLength;
+            _endOfDayTime = _dailyTimer + _dayLength * 5;
             _currentObjectiveIndex = -1;
         }
 
@@ -89,7 +89,7 @@ namespace Levels
 
             ResetPlayerStartPosition();
             ResetDailyTimer();
-            _gameHUD.TimePiece.SetLimit(6);
+            _gameHUD.TimePiece.SetLimit(_dayLength);
             _gameHUD.DisplayBriefing(false);
             _gameHUD.DisplayTimePiece(true);
             _isGameRunning = true;
@@ -112,11 +112,13 @@ namespace Levels
 
         private IEnumerator EndOfDay()
         {
+            var dailyObjective = _dailyObjectives.ElementAt(_currentObjectiveIndex);
+            
             _isGameRunning = false;
-            var points = CalculatePointsForCurrentDay();
-            _gameHUD.SetScoreScreen(points);
+            var points = CalculatePointsForObjective(dailyObjective);
+            _gameHUD.SetScoreScreen(dailyObjective.ObjectiveDescription, points);
             _gameHUD.DisplayScore(true);
-            _gameHUD.TimePiece.SetTime(60 * 6);
+            _gameHUD.TimePiece.SetTime(60 * _dayLength);
 
             yield return new WaitForSecondsRealtime(3f);
 
@@ -125,21 +127,21 @@ namespace Levels
             LoadNextLevel();
         }
 
-        private int CalculatePointsForCurrentDay()
+        private IEnumerable<(PickupType Type, int Points)> CalculatePointsForObjective(DailyObjective objective)
         {
-            var dailyObjective = _dailyObjectives.ElementAt(_currentObjectiveIndex);
-
-            var totalpoints = 0;
-
             var objectsInDropZone = _dropZone.GetObjectsInDropZone();
-            foreach (var pickup in objectsInDropZone)
-            {
-                totalpoints += pickup.Classifications
-                    .Join(dailyObjective.PickupTypesWithMultiplier, arg => arg.Type, arg => arg.PickupType, (p, d) => p.Points * d.Multiplier)
-                    .Sum();
-            }
+            
+            var allPickupClassifications = objectsInDropZone
+                .SelectMany(o => o.Classifications);
+            
+            var pointsByType = allPickupClassifications
+                .GroupBy(pc => pc.Type, pc => pc.Points)
+                .Select(g => new {Type = g.Key, Points = g.Sum()});
 
-            return totalpoints;
+            var totalPointsByType = pointsByType.Join(objective.PickupTypesWithMultiplier, arg => arg.Type, arg => arg.PickupType,
+                (p, d) => (p.Type, p.Points * d.Multiplier));
+
+            return totalPointsByType;
         }
     }
 }

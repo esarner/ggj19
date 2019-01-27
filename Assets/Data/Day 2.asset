@@ -20,3 +20,5 @@ MonoBehaviour:
     Multiplier: 1
   - PickupType: 5
     Multiplier: 1
+  - PickupType: 1
+    Multiplier: 1

@@ -330,6 +330,85 @@ Transform:
   m_Father: {fileID: 103969992}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.00001}
+--- !u!1 &217076246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217076247}
+  - component: {fileID: 217076249}
+  - component: {fileID: 217076248}
+  m_Layer: 0
+  m_Name: Name
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &217076247
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217076246}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.999621, y: 0.999621, z: 0.999621}
+  m_Children: []
+  m_Father: {fileID: 244090325}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 288.39996}
+  m_SizeDelta: {x: 239.58, y: 86.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &217076248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217076246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 334de8fdedcdd494484fda6c6d0a96b4, type: 3}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 48
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Name
+--- !u!222 &217076249
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217076246}
+  m_CullTransparentMesh: 0
 --- !u!1 &244090324
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +422,7 @@ GameObject:
   - component: {fileID: 244090326}
   - component: {fileID: 244090328}
   m_Layer: 0
-  m_Name: Image
+  m_Name: End of Day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,6 +439,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 217076247}
   - {fileID: 689689341}
   m_Father: {fileID: 1025291746}
   m_RootOrder: 1
@@ -2250,26 +2330,6 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 247177659}
     m_ColliderPaths:
-    - - X: 10000000
-        Y: -26875000
-      - X: -10000000
-        Y: -26875000
-      - X: -16875000
-        Y: -20000000
-      - X: -16875000
-        Y: 40000000
-      - X: -10000000
-        Y: 46875000
-      - X: 10000000
-        Y: 46875000
-      - X: 9999999
-        Y: 50000000
-      - X: -20000000
-        Y: 50000000
-      - X: -20000000
-        Y: -30000000
-      - X: 9999999
-        Y: -30000000
     - - X: 120000000
         Y: 50000000
       - X: 10000000
@@ -2289,6 +2349,26 @@ CompositeCollider2D:
       - X: 70000000
         Y: -30000000
       - X: 120000000
+        Y: -30000000
+    - - X: 10000000
+        Y: -26875000
+      - X: -10000000
+        Y: -26875000
+      - X: -16875000
+        Y: -20000000
+      - X: -16875000
+        Y: 40000000
+      - X: -10000000
+        Y: 46875000
+      - X: 10000000
+        Y: 46875000
+      - X: 9999999
+        Y: 50000000
+      - X: -20000000
+        Y: 50000000
+      - X: -20000000
+        Y: -30000000
+      - X: 9999999
         Y: -30000000
     - - X: 60000000
         Y: -26875000
@@ -2338,16 +2418,6 @@ CompositeCollider2D:
         Y: -113125000
   m_CompositePaths:
     m_Paths:
-    - - {x: 1, y: -2.6875}
-      - {x: -1, y: -2.6875}
-      - {x: -1.6875, y: -2}
-      - {x: -1.6875, y: 4}
-      - {x: -1, y: 4.6875}
-      - {x: 1, y: 4.6875}
-      - {x: 0.99999994, y: 5}
-      - {x: -2, y: 5}
-      - {x: -2, y: -3}
-      - {x: 0.99999994, y: -3}
     - - {x: 12, y: 5}
       - {x: 1, y: 5}
       - {x: 1, y: 4.6875}
@@ -2358,6 +2428,16 @@ CompositeCollider2D:
       - {x: 7, y: -2.6875}
       - {x: 7, y: -3}
       - {x: 12, y: -3}
+    - - {x: 1, y: -2.6875}
+      - {x: -1, y: -2.6875}
+      - {x: -1.6875, y: -2}
+      - {x: -1.6875, y: 4}
+      - {x: -1, y: 4.6875}
+      - {x: 1, y: 4.6875}
+      - {x: 0.99999994, y: 5}
+      - {x: -2, y: 5}
+      - {x: -2, y: -3}
+      - {x: 0.99999994, y: -3}
     - - {x: 6, y: -2.6875}
       - {x: 1, y: -2.6875}
       - {x: 1, y: -3}
@@ -2601,6 +2681,7 @@ GameObject:
   - component: {fileID: 310534636}
   - component: {fileID: 310534635}
   - component: {fileID: 310534634}
+  - component: {fileID: 310534637}
   m_Layer: 0
   m_Name: Sofa (1)
   m_TagString: Untagged
@@ -2635,7 +2716,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hands: 1
-  Classifications: []
+  Classifications:
+  - Type: 2
+    Points: 20
 --- !u!60 &310534635
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2715,6 +2798,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &310534637
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310534632}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &323843387 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5058246374423220021, guid: ce08cf170afcb914fbbc36766d08ae3a,
@@ -2829,6 +2933,7 @@ GameObject:
   - component: {fileID: 329102715}
   - component: {fileID: 329102714}
   - component: {fileID: 329102717}
+  - component: {fileID: 329102718}
   m_Layer: 0
   m_Name: Sofa
   m_TagString: Untagged
@@ -2942,7 +3047,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hands: 1
-  Classifications: []
+  Classifications:
+  - Type: 2
+    Points: 20
+--- !u!50 &329102718
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329102713}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &339163345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3290,6 +3418,7 @@ GameObject:
   - component: {fileID: 403478757}
   - component: {fileID: 403478760}
   - component: {fileID: 403478761}
+  - component: {fileID: 403478762}
   m_Layer: 0
   m_Name: TV
   m_TagString: pickup
@@ -3407,7 +3536,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hands: 2
-  Classifications: []
+  Classifications:
+  - Type: 3
+    Points: 30
+--- !u!50 &403478762
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403478756}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &437761567
 GameObject:
   m_ObjectHideFlags: 0
@@ -5612,14 +5764,21 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 48
+    m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Description
+  m_Text: 'Watchable: 10 pts
+
+    Edible: 20
+
+    Drinkable: 20 pts
+
+
+    Total: 50 pts'
 --- !u!222 &689689340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5640,12 +5799,12 @@ RectTransform:
   m_LocalScale: {x: 1.000161, y: 1.000161, z: 1.000161}
   m_Children: []
   m_Father: {fileID: 244090325}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -68.9}
-  m_SizeDelta: {x: 239.58, y: 86.7}
+  m_AnchoredPosition: {x: 21.8, y: -56.3}
+  m_SizeDelta: {x: 764.6, y: 602.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &765468550
 GameObject:
@@ -5683,7 +5842,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ddf501c446dbb54494ca362b9997536, type: 2}
   _playerStartPosition: {fileID: 666490327}
   _player: {fileID: 1137649977}
-  _dayLength: 30
+  _dayLength: 8
   _dropZone: {fileID: 376760644}
   _song: {fileID: 8300000, guid: 9315f674151c7a94dbc99c72b15bf782, type: 3}
 --- !u!4 &765468552
@@ -6019,6 +6178,7 @@ MonoBehaviour:
     Description: {fileID: 437761569}
   ScoreScreen:
     Canvas: {fileID: 244090328}
+    Name: {fileID: 217076248}
     Score: {fileID: 689689339}
   TimePiece: {fileID: 562864756}
 --- !u!1001 &1065198932

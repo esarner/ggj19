@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public struct MissionBriefing
 public struct ScoreScreen
 {
     public Canvas Canvas;
+    public Text Name;
     public Text Score;
 }
 
@@ -31,15 +33,19 @@ public class GameHUD : MonoBehaviour
     {
     }
 
-    public void SetMissionBriefing(string name, string description)
+    public void SetMissionBriefing(string missionName, string description)
     {
-        MissionBriefing.Name.text = name;
+        MissionBriefing.Name.text = missionName;
         MissionBriefing.Description.text = description;
     }
 
-    public void SetScoreScreen(int score)
+    public void SetScoreScreen(string missionName, IEnumerable<(PickupType Type, int Points)> score)
     {
-        ScoreScreen.Score.text = $"Score: {score}";
+        ScoreScreen.Name.text = missionName;
+
+        var scoreText = string.Join("\n", score.Select(s => $"{s.Type.ToString()}: {s.Points}"));
+        scoreText += $"\n\nTotal score: {score.Sum(s => s.Points)}";
+        ScoreScreen.Score.text = scoreText;
     }
 
     public void DisplayScore(bool display)
