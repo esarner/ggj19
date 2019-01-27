@@ -5844,7 +5844,7 @@ MonoBehaviour:
   _player: {fileID: 1137649977}
   _dayLength: 8
   _dropZone: {fileID: 376760644}
-  _song: {fileID: 8300000, guid: 9315f674151c7a94dbc99c72b15bf782, type: 3}
+  _song: {fileID: 8300000, guid: a28872e04d4f1854aa6919e0cd478c68, type: 3}
 --- !u!4 &765468552
 Transform:
   m_ObjectHideFlags: 0
@@ -6023,6 +6023,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4391572058180149514, guid: 2dd561a59e123834bb4a0e019db85711,
+        type: 3}
+      propertyPath: _containerSpriteRenderer
+      value: 
+      objectReference: {fileID: 8296042}
+    - target: {fileID: 4391572058180149514, guid: 2dd561a59e123834bb4a0e019db85711,
+        type: 3}
+      propertyPath: _doorSpriteRenderer
+      value: 
+      objectReference: {fileID: 1548339600}
+    - target: {fileID: 4391572058180149514, guid: 2dd561a59e123834bb4a0e019db85711,
+        type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 8296041}
     - target: {fileID: 4391572058180149518, guid: 2dd561a59e123834bb4a0e019db85711,
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
@@ -6083,21 +6098,6 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
       value: -0.40625
       objectReference: {fileID: 0}
-    - target: {fileID: 4391572058180149514, guid: 2dd561a59e123834bb4a0e019db85711,
-        type: 3}
-      propertyPath: _containerSpriteRenderer
-      value: 
-      objectReference: {fileID: 8296042}
-    - target: {fileID: 4391572058180149514, guid: 2dd561a59e123834bb4a0e019db85711,
-        type: 3}
-      propertyPath: _doorSpriteRenderer
-      value: 
-      objectReference: {fileID: 1548339600}
-    - target: {fileID: 4391572058180149514, guid: 2dd561a59e123834bb4a0e019db85711,
-        type: 3}
-      propertyPath: _animator
-      value: 
-      objectReference: {fileID: 8296041}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dd561a59e123834bb4a0e019db85711, type: 3}
 --- !u!1 &1025291744
@@ -39976,11 +39976,6 @@ PrefabInstance:
       propertyPath: _speed
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5058246374423220024, guid: ce08cf170afcb914fbbc36766d08ae3a,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 5058246374423220030, guid: ce08cf170afcb914fbbc36766d08ae3a,
         type: 3}
       propertyPath: _pickupAudioClip
@@ -39991,6 +39986,11 @@ PrefabInstance:
       propertyPath: _dropSound
       value: 
       objectReference: {fileID: 8300000, guid: 17b9cef8eb260ac4c9fbf734ce498da7, type: 3}
+    - target: {fileID: 5058246374423220024, guid: ce08cf170afcb914fbbc36766d08ae3a,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce08cf170afcb914fbbc36766d08ae3a, type: 3}
 --- !u!1 &6099877304695115284 stripped
