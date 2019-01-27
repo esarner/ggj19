@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 1c8ca69f12453e34ea492c9721fc6454
+guid: 3bc7fe849c0881447bacc047f5325f2f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Floors_0
-    21300002: Floors_1
-    21300004: Floors_2
+    21300000: road_tiles_0
+    21300002: road_tiles_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -87,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floors_0
+      name: road_tiles_0
       rect:
         serializedVersion: 2
         x: 0
@@ -101,13 +100,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 751f6c275962ff443a14ff7d64562340
+      spriteID: d45c628729d6a46498892be96e6aecfd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floors_1
+      name: road_tiles_1
       rect:
         serializedVersion: 2
         x: 32
@@ -121,27 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bfd0d2724eeedc42979b6eac676c7f4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Floors_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2f1d5712feb3074fa76758c6f3b23a7
+      spriteID: f7037012c22ba5e4cab2baabe37dd9f4
       vertices: []
       indices: 
       edges: []
@@ -149,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0012429edfecb1b48ad559344e862f37
+    spriteID: 02ea71de16b9f0048884805ddcd927a6
     vertices: []
     indices: 
     edges: []
