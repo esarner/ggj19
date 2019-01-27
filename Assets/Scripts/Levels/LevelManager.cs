@@ -3,9 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Levels
 {
+    public enum GameState
+    {
+        StartScreen,
+        MissionBriefing,
+        Running,
+        EndScreen
+    }
+    
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private GameHUD _gameHUD;
@@ -21,42 +30,67 @@ namespace Levels
         private float _endOfDayTime;
         private int _currentObjectiveIndex;
 
-        private bool _isGameRunning = false;
-
-        private void RestartSong()
-        {
-            _audioSource.clip = _song;
-            _audioSource.Play();
-        }
+        private GameState _gameState;
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
             _dailyTimer = 0;
             _endOfDayTime = _dailyTimer + _dayLength * 5;
-            _currentObjectiveIndex = -1;
         }
 
         private void Start()
         {
-            LoadNextLevel();
+            LoadStartScreen();
         }
 
         private void Update()
         {
-            _dailyTimer += Time.deltaTime;
-
-            UpdateTimePiece();
-
-            if (_dailyTimer >= _endOfDayTime)
+            switch (_gameState)
             {
-                StartCoroutine(EndOfDay());
+                case GameState.StartScreen:
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        LoadNextLevel();
+                    }
+                    break;
+                case GameState.MissionBriefing:
+                    break;
+                case GameState.Running:
+                    break;
+                case GameState.EndScreen:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
+            
+            if (_gameState == GameState.Running)
+            {
+                _dailyTimer += Time.deltaTime;
+
+                UpdateTimePiece();
+
+                if (_dailyTimer >= _endOfDayTime)
+                {
+                    StartCoroutine(EndOfDay());
+                }
+            }
+        }
+
+        private void LoadStartScreen()
+        {
+            _gameState = GameState.StartScreen;
+            _currentObjectiveIndex = -1;
+            
+            _gameHUD.DisplayStartScreen(true);
+            _gameHUD.DisplayBriefing(false);
+            _gameHUD.DisplayScore(false);
+            _gameHUD.DisplayTimePiece(false);
         }
 
         private void UpdateTimePiece()
         {
-            if (_isGameRunning)
+            if (_gameState == GameState.Running)
                 _gameHUD.TimePiece.SetTime(_dailyTimer * 12f);
         }
 
@@ -64,15 +98,15 @@ namespace Levels
         {
             if (_currentObjectiveIndex < _dailyObjectives.Count - 1)
             {
+                _gameState = GameState.MissionBriefing;
                 _currentObjectiveIndex += 1;
 
                 StartCoroutine(LoadNextLevelRoutine());
-                //DisplayDailyObjective
-
             }
             else
             {
                 // Finished all levels!
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
 
@@ -81,8 +115,12 @@ namespace Levels
             var dailyObjective = _dailyObjectives.ElementAt(_currentObjectiveIndex);
 
             _gameHUD.SetMissionBriefing(dailyObjective.name, dailyObjective.ObjectiveDescription);
+
+            _gameHUD.DisplayStartScreen(false);
             _gameHUD.DisplayBriefing(true);
+            _gameHUD.DisplayScore(false);
             _gameHUD.DisplayTimePiece(false);
+            
             RestartSong();
 
             yield return new WaitForSecondsRealtime(4f);
@@ -92,12 +130,13 @@ namespace Levels
             _gameHUD.TimePiece.SetLimit(_dayLength);
             _gameHUD.DisplayBriefing(false);
             _gameHUD.DisplayTimePiece(true);
-            _isGameRunning = true;
+            _gameState = GameState.Running;
         }
 
-        public void DisplayMissionBriefing()
+        private void RestartSong()
         {
-
+            _audioSource.clip = _song;
+            _audioSource.Play();
         }
 
         private void ResetPlayerStartPosition()
@@ -113,8 +152,8 @@ namespace Levels
         private IEnumerator EndOfDay()
         {
             var dailyObjective = _dailyObjectives.ElementAt(_currentObjectiveIndex);
-            
-            _isGameRunning = false;
+
+            _gameState = GameState.EndScreen;
             var points = CalculatePointsForObjective(dailyObjective);
             _gameHUD.SetScoreScreen(dailyObjective.ObjectiveDescription, points);
             _gameHUD.DisplayScore(true);
@@ -123,7 +162,6 @@ namespace Levels
             yield return new WaitForSecondsRealtime(3f);
 
             _gameHUD.DisplayScore(false);
-            // Display end level screen
             LoadNextLevel();
         }
 

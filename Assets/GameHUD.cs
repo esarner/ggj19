@@ -5,6 +5,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
+public struct StartScreen
+{
+    public Canvas Canvas;
+    public Text Title;
+    public Text StartText;
+    public Image ArrowKeys;
+}
 
 [Serializable]
 public struct MissionBriefing
@@ -25,14 +33,11 @@ public struct ScoreScreen
 
 public class GameHUD : MonoBehaviour
 {
+    public StartScreen StartScreen;
     public MissionBriefing MissionBriefing;
     public ScoreScreen ScoreScreen;
     public TimePiece TimePiece;
-
-    public void Start()
-    {
-    }
-
+    
     public void SetMissionBriefing(string missionName, string description)
     {
         MissionBriefing.Name.text = missionName;
@@ -46,6 +51,11 @@ public class GameHUD : MonoBehaviour
         var scoreText = string.Join("\n", score.Select(s => $"{s.Type.ToString()}: {s.Points}"));
         scoreText += $"\n\nTotal score: {score.Sum(s => s.Points)}";
         ScoreScreen.Score.text = scoreText;
+    }
+
+    public void DisplayStartScreen(bool display)
+    {
+        StartScreen.Canvas.enabled = display;
     }
 
     public void DisplayScore(bool display)
