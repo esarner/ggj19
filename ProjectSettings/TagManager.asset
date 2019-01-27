@@ -42,6 +42,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3581036841
+    locked: 0
+  - name: Decorative
+    uniqueID: 827414209
+    locked: 0
+  - name: Floor
+    uniqueID: 2442355979
+    locked: 0
+  - name: Walls
+    uniqueID: 3344843151
+    locked: 0
+  - name: Doors
+    uniqueID: 1408086701
+    locked: 0
+  - name: Floor Pickups
+    uniqueID: 970532971
+    locked: 0
+  - name: Furniture
+    uniqueID: 3823701803
+    locked: 0
+  - name: On Furniture
+    uniqueID: 2809167909
+    locked: 0
   - name: UI
     uniqueID: 3559010697
     locked: 0
