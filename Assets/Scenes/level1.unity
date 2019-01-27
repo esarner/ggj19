@@ -6000,7 +6000,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ddf501c446dbb54494ca362b9997536, type: 2}
   _playerStartPosition: {fileID: 666490327}
   _player: {fileID: 1137649977}
-  _dayLength: 1
+  _dayLength: 8
   _dropZone: {fileID: 376760644}
   _song: {fileID: 8300000, guid: a28872e04d4f1854aa6919e0cd478c68, type: 3}
 --- !u!4 &765468552
@@ -6030,7 +6030,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.451
   m_Pitch: 1
   Loop: 0
   Mute: 0
