@@ -117,10 +117,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hands: 0
   Classifications:
-  - Type: 0
+  - Type: 4
     Points: 10
-  - Type: 1
-    Points: 10
+  - Type: 3
+    Points: 2
 --- !u!60 &7520497427190692474
 PolygonCollider2D:
   m_ObjectHideFlags: 0
