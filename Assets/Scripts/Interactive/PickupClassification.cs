@@ -17,5 +17,6 @@ public enum PickupType
     Watchable,
     Entertainment,
     Cleaning,
-    Tools
+    Tools,
+    Fruit,
 }

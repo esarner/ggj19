@@ -148,9 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e56d2120958de04ba2e7ed95294e9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hands: 0
+  _hands: 1
   Classifications:
   - Type: 0
     Points: 10
   - Type: 1
     Points: 10
+  - Type: 7
+    Points: 100
